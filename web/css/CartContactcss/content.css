@@ -1,0 +1,247 @@
+.right-content{
+    font-family: "Poppins", sans-serif;
+    width: inherit;
+    margin-top: 64px;
+    padding: 0 0 2rem 60px;
+    height: fit-content;
+}
+
+.cart-table{
+    border-collapse: collapse;
+    width: 100%;
+}
+
+.cart-table thead tr {
+    font-size: 1.5rem;
+    font-weight: 300;
+    height: 6rem;
+    background-color: #82ae46;
+    color: #ffffff;
+}
+
+.cart-table thead tr th{
+    font-weight: 300;
+}
+
+.cart-table tbody tr{
+    padding: 3rem 0;
+    border-bottom: .1px solid #dddddd;
+}
+
+.cart-table tbody tr td{
+    max-width: fit-content;
+    text-align: center;
+    padding: 1rem 0;
+}
+
+.td-id{
+    width: 3rem;
+    font-size: 1.2rem;
+    padding: 0 1.5rem;
+}
+
+.cart-table .pro-img{
+    width: 8rem;
+    height: 8rem;
+    border-radius: 100%;
+    overflow: hidden;
+}
+
+.pro-img img{
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.pro-img{
+    margin: 0 auto;
+}
+
+.td-name, .td-price, .td-total{
+    font-size: 1.5rem;
+    font-weight: 300;
+}
+
+.td-removebtn button{
+    width: 3rem;
+    height: 3rem;
+    cursor: pointer;
+    border: .1px solid #bdbdbd;
+    background-color: rgb(247, 247, 247);
+}
+
+.td-removebtn button:hover{
+    background-color: #82ae46;
+    color: #ffffff;
+    transition: .1s ease-in;
+}
+
+.total-table{
+    padding: 2rem;
+    border: .1px solid #dddddd;
+    margin: 2rem;
+}
+
+.total-table tbody tr:nth-child(2){
+    border-bottom: .1px solid #dddddd;
+}
+
+.total-table thead tr th{
+    font-weight: 500;
+    font-size: 2rem;
+    padding-bottom: 2rem;
+    text-align: left;
+}
+
+.total-table tbody tr th{
+    padding-bottom: 2rem;
+    text-align: left;
+    font-weight: 300;
+    color: #4d4d4d;
+    font-size: 1.5rem;
+}
+
+.total-table tbody .th-total{
+    font-weight: bolder;
+    color: black;
+}
+
+.td-quantity input{
+    outline: none;
+    text-align: center;
+    width: 12rem;
+    height: 3rem;
+    font-size: 1.5rem;
+    border: .1px solid #dddddd;
+}
+
+.total-table{
+    border: .1px solid #dddddd;
+}
+
+.total-table tbody tr:nth-child(2) th{
+    border-bottom: .1px solid #dddddd;
+}
+
+.total-table tbody tr:nth-child(3) th{
+    padding: 1rem 0;
+}
+
+.total-table thead tr th{
+    font-weight: 500;
+    font-size: 2rem;
+    padding-bottom: 2rem;
+    text-align: left;
+}
+
+.total-table tbody tr th{
+    padding-bottom: 2rem;
+    text-align: left;
+    font-weight: 300;
+    color: #4d4d4d;
+    font-size: 1.5rem;
+}
+
+.total-table tbody .th-total{
+    font-weight: bolder;
+    color: black;
+}
+
+.contact-container{
+    display: flex;
+    gap: 1.5rem;
+    justify-content: space-between;
+    margin-top: 2rem;
+}
+
+.contact-input-box{
+    width: 60%;
+}
+
+.contact-input-box>h3{
+    font-size: 2.5rem;
+    font-weight: 300;
+}
+
+.input-box{
+    display: flex;
+    flex-direction: column;
+    font-size: 1.8rem;
+    font-weight: 200;
+    color: #4d4d4d;
+    margin-bottom: 1.5rem;
+}
+
+.input-box input{
+    font-weight: 300;
+    color: #4d4d4d;
+    outline: none;
+    border: .1px solid #dddddd;
+    width: 100%;
+    height: 5rem;
+    padding: 1rem;
+    font-size: 1.8rem;
+}
+
+.input-box input:focus{
+    border: .1px solid #82ae46;
+}
+
+.input-box span{
+    margin-bottom: 1rem;
+}
+
+.contact-input-box .input-box:nth-child(5){
+    display: flex;
+    flex-direction: row;
+    gap: 2rem;
+}
+
+.child-input{
+    display: flex;
+    flex-direction: column;
+    width: 50%;
+}
+
+.gender{
+    height: max-content;
+    height: 5rem;
+    -webkit-appearance:none;
+    appearance: none;
+    font-size: 1.8rem;
+    font-weight: 300;
+    color: #4d4d4d;
+    padding: 1rem;
+    outline: none;
+    border: .1px solid #dddddd;
+}
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+.cart-total{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.checkoutBtn{
+    width: 15rem;
+    height: 5rem;
+    font-size: 1.5rem;
+    border: none;
+    background-color: #82ae46;
+    color: #ffffff;
+    border-radius: 3rem;
+    cursor: pointer;
+}
+
+.checkoutBtn:hover, .morebtn:hover{
+    border: .1px solid #82ae46;
+    color: #82ae46;
+    background-color: #ffffff;
+    transition: .2s linear;
+}
