@@ -49,6 +49,39 @@
                     fileInput.value = '';
                 }
             }
+            document.addEventListener("DOMContentLoaded", function() {
+    // Get the input element
+    var usernameInput = document.querySelector('input[name="name"]');
+
+    // Add an event listener for input changes
+    usernameInput.addEventListener('input', function() {
+        // Get the current value of the input
+        var username = usernameInput.value;
+
+        // Validate the username using a regular expression
+        var isValidUsername = /^[a-zA-Z\s]+$/.test(username);
+
+        // Display an error message if the username is not valid
+        var errorMessage = document.getElementById('error-message');
+        if (!isValidUsername) {
+            errorMessage.textContent = 'Username can only contain letters and spaces';
+            usernameInput.setCustomValidity('Invalid username');
+        } else {
+            errorMessage.textContent = '';
+            usernameInput.setCustomValidity('');
+        }
+    });
+
+    // Add an event listener for form submission to perform a final validation
+    var form = document.querySelector('form');
+    form.addEventListener('submit', function(event) {
+        var username = usernameInput.value;
+        if (!/^[a-zA-Z\s]+$/.test(username)) {
+            alert('Please enter a valid username containing only letters and spaces.');
+            event.preventDefault(); // Prevent form submission
+        }
+    });
+});
 
         </script>
     </head>

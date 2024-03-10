@@ -4,6 +4,7 @@
  */
 package dal;
 
+import static dal.MyDAO.con;
 import static dal.MyDAO.ignoringExc;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -24,7 +25,7 @@ import model.Slider;
  * @author MM
  */
 public class BlogDAO extends MyDAO {
-    
+
     private final static List<BlogCategory> blogCateList = new BlogCateDAO().getAllBlogCate();
     private final static List<Account> accList = new AccDAO().getAllAcc();
 
@@ -62,7 +63,7 @@ public class BlogDAO extends MyDAO {
         } catch (Exception ex) {
             Logger.getLogger(BlogDAO.class.getName()).log(Level.SEVERE, null, ex);
         }
-        System.out.println(System.nanoTime()-time);
+        System.out.println(System.nanoTime() - time);
         return list;
 
     }
@@ -179,6 +180,61 @@ public class BlogDAO extends MyDAO {
         return list;
     }
 
+    public List<Blog> managerBlog(String cid, String aid, String status, String key, int index) {
+        List<Blog> list = new ArrayList();
+        String sql = "SELECT * FROM mydb.blog b  join mydb.blogcategory c on b.CateID = c.BlogCateID where 1=1 ";
+        sql += " and b.CateID like '%" + cid + "%' and b.Title like '%" + key + "%'";
+        if (aid != null && !aid.equals("")) {
+            sql += " and b.AccID =   " + aid;
+        }
+        if (status != null && !status.equals("")) {
+            sql += " and b.IsActive =   " + status;
+        }
+        sql += " LIMIT ?, 3;";
+        System.out.println(sql);
+        try {
+            ps = con.prepareStatement(sql);
+            ps.setInt(1, (index - 1) * 3);
+            rs = ps.executeQuery();
+
+            while (rs.next()) {
+                list.add(blogParse(rs));
+            }
+
+        } catch (SQLException e) {
+            System.out.println(e);
+        } catch (Exception ex) {
+            Logger.getLogger(BlogDAO.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return list;
+    }
+
+   
+    public int coutManagerBlog(String cid, String aid, String status, String key) {
+        String sql = "SELECT count(*) FROM mydb.blog b  join mydb.blogcategory c on b.CateID = c.BlogCateID where 1=1 ";
+        sql += " and b.CateID like '%" + cid + "%' and b.Title like '%" + key + "%'";
+        if (aid != null && !aid.equals("")) {
+            sql += " and b.AccID =   " + aid;
+        }
+         if (status != null && !status.equals("")) {
+            sql += " and b.IsActive =   " + status;
+        }
+        
+        try {
+            ps = con.prepareStatement(sql);
+            rs = ps.executeQuery();
+
+            while (rs.next()) {
+                return rs.getInt(1);
+            }
+        } catch (SQLException e) {
+            System.out.println(e);
+        } catch (Exception ex) {
+            Logger.getLogger(BlogDAO.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return 0;
+    }
+
     public BlogCmtCount getBcountById(int id) {
         String sql = "SELECT b.blogid, IFNULL(COUNT(c.blogid), 0) AS Count\n"
                 + "FROM mydb.blog b\n"
@@ -200,12 +256,63 @@ public class BlogDAO extends MyDAO {
         return null;
     }
 
+    public void changeBlog(String bid, String status) {
+        String sql = "update blog set IsActive = " + status + " where BlogID =" + bid;
+        try {
+            ps = con.prepareStatement(sql);
+            ps.executeUpdate();
 
-    public static void main(String[] args) {
-
-        long time = System.nanoTime();
-        BlogDAO b = new BlogDAO();
-        System.out.println(b.pagingBlog(1, null));
-        System.out.println(System.nanoTime()-time);
+        } catch (SQLException e) {
+            System.out.println(e);
+        } catch (Exception ex) {
+            Logger.getLogger(BlogDAO.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
+
+    public void addBlog(int accountId, int categoryId, boolean isActive, String title, String img, String content) {
+        String sql = "INSERT INTO blog (AccID, CateID, IsActive, Title, Img, Content,Time) VALUES (?, ?, ?, ?, ?, ?,CURDATE())";
+        try {
+            ps = con.prepareStatement(sql);
+            ps.setInt(1, accountId);
+            ps.setInt(2, categoryId);
+            ps.setBoolean(3, isActive);
+            ps.setString(4, title);
+            ps.setString(5, img);
+            ps.setString(6, content);
+            ps.executeUpdate();
+
+        } catch (SQLException e) {
+            System.out.println(e);
+        } catch (Exception ex) {
+            Logger.getLogger(BlogDAO.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+
+    public void editBlog(int blogId, int accountId, int categoryId, boolean isActive, String title, String img, String content) {
+        String sql = "UPDATE blog SET AccID = ?, CateID = ?, IsActive = ?, Title = ?, Img = ?, Content = ?, Time = CURDATE() WHERE BlogID = ?";
+        try {
+            ps = con.prepareStatement(sql);
+            ps.setInt(1, accountId);
+            ps.setInt(2, categoryId);
+            ps.setBoolean(3, isActive);
+            ps.setString(4, title);
+            ps.setString(5, img);
+            ps.setString(6, content);
+            ps.setInt(7, blogId);
+            ps.executeUpdate();
+
+        } catch (SQLException e) {
+            System.out.println(e);
+        } catch (Exception ex) {
+            Logger.getLogger(BlogDAO.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+
+//    public static void main(String[] args) {
+//
+//        long time = System.nanoTime();
+//        BlogDAO b = new BlogDAO();
+//        System.out.println(b.pagingBlog(1, null));
+//        System.out.println(System.nanoTime() - time);
+//    }
 }

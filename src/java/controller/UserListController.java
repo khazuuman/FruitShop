@@ -53,7 +53,7 @@ public class UserListController extends HttpServlet {
                         <td>%s</td>
                         <td>
                             <div class="action-btn">
-                                <button class="btn-edit" onclick="window.location.href='/Fruitshop/userdetail?id=%s'"><i class="fa-solid fa-info"></i></button>
+                                <button class="btn-edit" onclick="window.location.href='/Fruitshop/userlistprofile?id=%s'"><i class="fa-solid fa-info"></i></button>
                             </div>
                         </td>
                     </tr>""",
@@ -108,17 +108,22 @@ public class UserListController extends HttpServlet {
         AccDAO accDAO = new AccDAO();
         accDAO.setNrpp(3);
         int size = accDAO.CountAcc(sql);
-        Paging p = new Paging(accDAO.getNrpp(), 1, size);
+        int index;
+        try {
+            index = Integer.parseInt(request.getParameter("index"));
+        } catch (Exception e) {
+            index = 1;
+        }
+        Paging p = new Paging(accDAO.getNrpp(), index, size);
         p.calc();
         request.setAttribute("p", p);
-        List<Account> list = accDAO.getAllAcc(1);
+        List<Account> list = accDAO.getAllAcc(index);
         request.setAttribute("listUser", list);
         request.setAttribute("roleList", new RoleDAO().getAllRole());
         request.setAttribute("sttList", new StatusDAO().getAccStatus());
         request.getRequestDispatcher("userlist.jsp").forward(request, response);
     }
-    
-    
+
     /**
      * Handles the HTTP <code>POST</code> method.
      *
@@ -139,9 +144,22 @@ public class UserListController extends HttpServlet {
             index = 1;
         }
         String sql = "select * from account where ";
-        try {sql += "RoleID = " + Integer.valueOf(request.getParameter("role")) + " and ";} catch (Exception e) {}
-        try {sql += "Status = " + Integer.valueOf(request.getParameter("stt")) + " and ";} catch (Exception e) {}
-        try {sql += "Gender = " + Integer.valueOf(request.getParameter("gen")) + " and ";} catch (Exception e) {}
+        try {
+            int role = Integer.parseInt(request.getParameter("role"));
+            sql += "RoleID = " + role + " and ";
+        } catch (Exception e) {
+        }
+        try {
+            int stt = Integer.parseInt(request.getParameter("stt"));
+            sql += "Status = " + stt + " and ";
+        } catch (Exception e) {
+        }
+        try {
+            int gen = Integer.parseInt(request.getParameter("gen"));
+            sql += "Gender = " + gen + " and ";
+            request.setAttribute("gen", gen);
+        } catch (Exception e) {
+        }
         String txt = request.getParameter("txt") + "";
         if (request.getParameter("txt") == null || txt.isEmpty()) {
             sql += "1=1 ";

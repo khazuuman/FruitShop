@@ -19,7 +19,7 @@ public class DBContext {
             long time = System.nanoTime();
             // Change the username, password, and URL to connect to your own database
             String username = "root";
-            String password = "vinh0205";
+            String password = "123456";
             String url = "jdbc:mysql://localhost:3306/mydb";
             Class.forName("com.mysql.cj.jdbc.Driver");
             connection = DriverManager.getConnection(url, username, password);

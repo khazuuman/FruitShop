@@ -29,7 +29,7 @@ public class AccountNavbarDAO extends MyDAO{
             ps.setInt(1, id);
             ResultSet rs = ps.executeQuery();
             if (rs.next()) {
-                Account a = new Account(rs.getInt("AccID"), getRoleById(rs.getInt("RoleID")), getStatusById(rs.getInt("Status")),rs.getBoolean("Gender"),rs.getString("Email"),rs.getString("Password"),rs.getString("Username"),rs.getString("AccImg"),rs.getString("Phone"),rs.getString("Address"),rs.getTimestamp("Time").toLocalDateTime());
+                Account a = new Account(rs.getInt("AccID"), getRoleById(rs.getInt("RoleID")), getStatusById(rs.getInt("Status")),rs.getBoolean("Gender"),rs.getString("Email"),rs.getString("Username"),rs.getString("Password"),rs.getString("AccImg"),rs.getString("Phone"),rs.getString("Address"),rs.getTimestamp("Time").toLocalDateTime());
                 return a;
             }
         } catch(SQLException e){

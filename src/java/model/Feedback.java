@@ -14,16 +14,18 @@ public class Feedback {
     private Product product;
     private int rating;
     private String content;
+    private boolean isActive;
 
     public Feedback() {
     }
 
-    public Feedback(int feedbackID, Account account, Product product, int rating, String content) {
+    public Feedback(int feedbackID, Account account, Product product, int rating, String content, boolean isActive) {
         this.feedbackID = feedbackID;
         this.account = account;
         this.product = product;
         this.rating = rating;
         this.content = content;
+        this.isActive = isActive;
     }
 
     public int getFeedbackID() {
@@ -65,6 +67,18 @@ public class Feedback {
     public void setContent(String content) {
         this.content = content;
     }
+
+    public boolean isIsActive() {
+        return isActive;
+    }
+
+    public void setIsActive(boolean isActive) {
+        this.isActive = isActive;
+    }
+
+    
+
+    
 
     
 

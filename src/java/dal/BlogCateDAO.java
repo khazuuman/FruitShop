@@ -4,15 +4,17 @@
  */
 package dal;
 
+import static dal.MyDAO.con;
 import java.sql.SQLException;
+import java.util.AbstractList;
 import java.util.ArrayList;
 import java.util.List;
 import model.*;
 
 public class BlogCateDAO extends MyDAO {
 
-    public List getAllBlogCate() {
-        List blog = new ArrayList();
+    public List<BlogCategory> getAllBlogCate() {
+        ArrayList<BlogCategory> blog = new ArrayList<BlogCategory>();
         String sql = "select * from blogcategory";
         try {
             ps = con.prepareStatement(sql);

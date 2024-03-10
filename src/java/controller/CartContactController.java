@@ -5,6 +5,7 @@
 
 package controller;
 
+import dal.AccDAO;
 import dal.AccountDAO;
 import dal.CartContactDAO;
 import dal.ProductListDAO;
@@ -74,7 +75,7 @@ public class CartContactController extends HttpServlet {
            
             Account acc = dao.getAccountById(acc1.getAccID());
             CartContactDAO daoCart = new CartContactDAO();
-             List<CartOrder> listCart = daoCart.getOrderByAccId(2);
+             List<CartOrder> listCart = daoCart.getOrderByAccId(acc.getAccID());
              double cartTotals =0;
              for (CartOrder cartOrder : listCart) {
               cartTotals += cartOrder.getQuantity()*cartOrder.getSellPrice();
@@ -104,7 +105,34 @@ public class CartContactController extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
     throws ServletException, IOException {
-        processRequest(request, response);
+      String name = request.getParameter("name");
+        String img = request.getParameter("img");
+        String phone = request.getParameter("phone");
+        Boolean gender = Boolean.valueOf(request.getParameter("gender"));
+        String address = request.getParameter("address");
+        String note = request.getParameter("note");
+        String cartTotals = request.getParameter("cartTotals");
+        double cartTotalsValue = Double.parseDouble(cartTotals);
+        AccountDAO dao = new AccountDAO();
+        CartContactDAO cdao = new CartContactDAO();
+        AccDAO accdao = new AccDAO();
+        int saleId = dao.saleAccID();
+                
+        HttpSession session = request.getSession();
+        Account acc1 = (Account) session.getAttribute("acc");
+        Account acc = dao.getAccountById(acc1.getAccID());
+        int orderId = cdao.getOrderIDbyAccID(acc.getAccID());
+        cdao.updateCartNote(orderId, note ,cartTotalsValue,saleId);
+        AccDAO acdao = new AccDAO();
+        
+        if (img == null || img.isEmpty()) {
+            img = acc.getAccImg();
+        }
+
+        dao.UpdateAccount(acc, name, img, gender, phone,address);
+        
+      
+        response.sendRedirect("CartCompletionController");
     }
 
     /** 

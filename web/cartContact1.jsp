@@ -5,7 +5,9 @@
 --%>
 
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core">
     <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
     <head>
         <meta charset="UTF-8">
@@ -24,7 +26,7 @@
         <link rel="stylesheet" href="css/CartContactcss/grid-bass.css">
         <link rel="stylesheet" href="css/CartContactcss/navbar-footer-body.css">
         <link rel="stylesheet" href="css/CartContactcss/side-bar.css">
-       
+
     </head>
 
     <body>
@@ -197,8 +199,8 @@
                                     </div>
                                     <div class="side-bar-product-price">
                                         <span class="oldprice " style=" text-decoration: line-through;
-    color: #9e9e9e;
-    padding-right: 5px;">$${p3.getMainPrice()}</span>
+                                              color: #9e9e9e;
+                                              padding-right: 5px;">$${p3.getMainPrice()}</span>
                                         <span class="onprice">$${p3.getSalePrice()}</span>
                                     </div>
                                 </div>
@@ -222,91 +224,107 @@
                     </thead>
                     <tbody>
                         <c:forEach var="cart" items="${requestScope.ListCart}" >
-                        
-                        <tr>
-                            <td class="td-id">425</td>
-                            <td class="td-img">
-                                <div class="pro-img">
-                                    <img src="img/${cart.image}"
-                                         alt="Image">
-                                </div>
-                            </td>
-                            <td class="td-name">${cart.productName}</td>
-                            <td class="td-price">$${cart.sellPrice}</td>
-                            <td class="td-quantity">
-                                <input type="number" value="${cart.quantity}" name="" id="" readonly>
-                            </td>
-                            <td class="td-total">${cart.sellPrice*cart.quantity}</td>
-                        </tr>
+
+                            <tr>
+                                <td class="td-id">425</td>
+                                <td class="td-img">
+                                    <div class="pro-img">
+                                        <img src="img/${cart.image}"
+                                             alt="Image">
+                                    </div>
+                                </td>
+                                <td class="td-name">${cart.productName}</td>
+                                <td class="td-price">$${cart.sellPrice}</td>
+                                <td class="td-quantity">
+                                    <input type="number" value="${cart.quantity}" name="" id="" readonly>
+                                </td>
+                                <td class="td-total">${cart.sellPrice*cart.quantity}</td>
+                            </tr>
                         </c:forEach>
                     </tbody>
                 </table>
 
-                <div class="contact-container">
-                    <div class="contact-input-box">
-                          <button style="margin-top: 2rem;" class="checkoutBtn"><span>Change</span></button>
-                        <h3>Billing Details</h3>
-                        <div class="input-box">
-                            <span>Full Name</span>
-                            <input class="fullName" type="text" name="" id="" value="${requestScope.acc.username}" >
-                        </div>
-                        <div class="input-box">
-                            <span>Email</span>
-                            <input class="fullName" type="text" name="email" id="email" value="${requestScope.acc.email}" readonly>
+                
+                    <div class="contact-container">
+                        <div class="contact-input-box">
+                            <button style="margin-top: 2rem;" class="checkoutBtn" id="changeBtn1" onclick="window.location.href = 'CartDetailController'">
+                                <span>Change</span>
+                            </button>
+                            <form method="POST" action="cart-contact">
 
-                        </div>
-                        <div class="input-box">
-                            <div class="child-input">
-                                <span>Gender</span>
-                                <select class="gender" name="" id="">
-                                    <option value="">Male</option>
-                                    <option value="">Female</option>
-                                </select>
+                            <h3>Billing Details</h3>
+                            <div class="input-box">
+                                <span>Full Name</span>
+                                <input class="fullName" type="text" name="name" id="" value="${requestScope.acc.username}"required >
                             </div>
-                            <div class="child-input">
-                                <span>Phone</span>
-                                <input type="text" name="phone" value="${requestScope.acc.phone ? requestScope.acc.phone  : ''  }"
-
-                                     required pattern="\d{10}" title="Vui lòng nh?p ?úng 10 s?"/>
+                            <div class="input-box">
+                                <span>Email</span>
+                                <input class="fullName" type="text" name="email" id="email" value="${requestScope.acc.email}" readonly>
 
                             </div>
+                            <div class="input-box">
+                                <div class="child-input">
+                                    <span>Gender</span>
+                                    <select class="gender" name="gender" id="">
+                                        <option value="1">Male</option>
+                                        <option value="0">Female</option>
+                                    </select>
+                                </div>
+                                <div class="child-input">
+                                    <span>Phone</span>
+                                    <input type="text" name="phone" value="${requestScope.acc.phone}"
+
+                                           required pattern="\d{10}" title="Please enter 10 digits "/>
+
+                                </div>
+                            </div>
+                            <div class="input-box">
+                                <span>Address</span>
+                                <input type="text" name="address" id="" value="${requestScope.acc.address}" required="">
+                            </div>
+                            <div class="input-box">
+                                <span>Note</span>
+                                <input type="text" name="note" id="">
+                            </div>
+                            <div class="input-box" style="display: none;">
+                                <span>Note</span>
+                                <input type="number" name="cartTotals" id="" value="${requestScope.cartTotals}">
+                            </div>
+
+
                         </div>
-                        <div class="input-box">
-                            <span>Address</span>
-                            <input type="text" name="address" id="" value="${requestScope.acc.address? requestScope.acc.address  : '' } ">
+                        <div class="cart-total">
+                            <table class="total-table">
+                                <thead>
+                                    <tr>
+                                        <th>Cart Totals</th>
+                                        <th></th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <th>Subtotal</th>
+                                        <th>$${requestScope.cartTotals}</th>
+                                    </tr>
+                                    <tr>
+                                        <th>Delivery</th>
+                                        <th>$0.00</th>
+                                    </tr>
+                                    <tr>
+                                        <th style="font-weight: 600;">TOTAL</th>
+                                        <th class="th-total">$${requestScope.cartTotals}</th>
+                                    </tr>
+                                </tbody>
+                            </table>
+                            <button class="checkoutBtn"><span>Submit</span></button>
+                            <button style="margin-top: 2rem;" class="checkoutBtn" id="changeBtn1" onclick="window.location.href='home'">
+    <span>Submit</span>
+</button>
+
                         </div>
-                        <div class="input-box">
-                            <span>Note</span>
-                            <input type="text" name="note" id="">
-                        </div>
-                      
                     </div>
-                    <div class="cart-total">
-                        <table class="total-table">
-                            <thead>
-                                <tr>
-                                    <th>Cart Totals</th>
-                                    <th></th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <th>Subtotal</th>
-                                    <th>$${requestScope.cartTotals}</th>
-                                </tr>
-                                <tr>
-                                    <th>Delivery</th>
-                                    <th>$0.00</th>
-                                </tr>
-                                <tr>
-                                    <th style="font-weight: 600;">TOTAL</th>
-                                    <th class="th-total">$${requestScope.cartTotals}</th>
-                                </tr>
-                            </tbody>
-                        </table>
-                        <button class="checkoutBtn"><span>Submit</span></button>
-                    </div>
-                </div>
+                </form>
+
             </div>
         </section>
 
@@ -362,6 +380,7 @@
                 </div>
             </div>
         </footer>
+    
     </body>
 
 </html>

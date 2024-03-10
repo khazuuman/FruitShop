@@ -12,8 +12,8 @@
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>User Profile</title>
-        
-         <link rel="stylesheet" href="./css/Home/HomeCss.css"/>
+
+        <link rel="stylesheet" href="./css/Home/HomeCss.css"/>
         <link rel="stylesheet" href="./css/Home/bass.css"/>
         <link rel="stylesheet" href="./css/Home/grid.css"/>
 
@@ -22,70 +22,70 @@
     <body>
         <div class="container">
             <section class="header">
-        <div class="grid wide menu">
-            <nav class="navbar">
-                <ul class="navbar-list">
-                    <li class="navbar-list-item">
-                        <a href="home">Home</a>
-                    </li>
-                    <li class="navbar-list-item header__navbar-user">
-                        <a href="ProductListController">Shop</a>
-                        <ul class="navbar-blog-list">
-                            <li class="navbar-blog-list-item">
-                                <a class="navbar-blog-item-link" href="ProductListController">Products</a>
+                <div class="grid wide menu">
+                    <nav class="navbar">
+                        <ul class="navbar-list">
+                            <li class="navbar-list-item">
+                                <a href="home">Home</a>
                             </li>
+                            <li class="navbar-list-item header__navbar-user">
+                                <a href="ProductListController">Shop</a>
+                                <ul class="navbar-blog-list">
+                                    <li class="navbar-blog-list-item">
+                                        <a class="navbar-blog-item-link" href="ProductListController">Products</a>
+                                    </li>
 
-                            <li class="navbar-blog-list-item">
-                                <a class="navbar-blog-item-link" href="url">Cart</a>
-                            </li>
-                            <li class="navbar-blog-list-item">
-                                <a class="navbar-blog-item-link" href="url">Checkout</a>
-                            </li>
-                        </ul>
-                    </li>
-                </ul>
-                <a href="home" class="navbar_logo">
-                    <img src="./img/logo-img.png" alt="anh logo" />
-                </a>
-                <ul class="navbar-list">
-                    <li class="navbar-list-item header__navbar-user">
-                        <a href="Blog">Blog</a>
-                        <ul class="navbar-blog-list">
-                            <li class="navbar-blog-list-item">
-                                <a class="navbar-blog-item-link" href="url">Blog List</a>
-                            </li>
-                            <li class="navbar-blog-list-item">
-                                <a class="navbar-blog-item-link" href="url">Blog Single</a>
+                                    <li class="navbar-blog-list-item">
+                                        <a class="navbar-blog-item-link" href="url">Cart</a>
+                                    </li>
+                                    <li class="navbar-blog-list-item">
+                                        <a class="navbar-blog-item-link" href="url">Checkout</a>
+                                    </li>
+                                </ul>
                             </li>
                         </ul>
-                    </li>
-                    <c:if test="${sessionScope.acc==null}">
-                        <li class="navbar-list-item">
-                            <a href="LoginController">Login</a>
-                        </li>
-                    </c:if>
-                    <c:if test="${sessionScope.acc!=null}">
-                        <li class="navbar-list-item header__navbar-user">
-                            <!--                            <img src="./assest/img/${sessionScope.acc.accImg}" class="account-logo" alt="123"/>-->
-                            <a href="#" class="account-name">${sessionScope.acc.username}</a>
-                            <ul class="header__navbar-user-menu">
-                                <li class="header__navbar-user-item">
-                                    <a href="userprofile?id=${sessionScope.acc.getAccID()}"
-                                        class="header__navbar-user-item-link">Profile</a>
+                        <a href="home" class="navbar_logo">
+                            <img src="./img/logo-img.png" alt="anh logo" />
+                        </a>
+                        <ul class="navbar-list">
+                            <li class="navbar-list-item header__navbar-user">
+                                <a href="Blog">Blog</a>
+                                <ul class="navbar-blog-list">
+                                    <li class="navbar-blog-list-item">
+                                        <a class="navbar-blog-item-link" href="url">Blog List</a>
+                                    </li>
+                                    <li class="navbar-blog-list-item">
+                                        <a class="navbar-blog-item-link" href="url">Blog Single</a>
+                                    </li>
+                                </ul>
+                            </li>
+                            <c:if test="${sessionScope.acc==null}">
+                                <li class="navbar-list-item">
+                                    <a href="LoginController">Login</a>
                                 </li>
-                                <li class="header__navbar-user-item header__navbar-user-item--separate">
-                                    <a href="logout" class="header__navbar-user-item-link">Logout</a>
+                            </c:if>
+                            <c:if test="${sessionScope.acc!=null}">
+                                <li class="navbar-list-item header__navbar-user">
+                                    <!--                            <img src="./assest/img/${sessionScope.acc.accImg}" class="account-logo" alt="123"/>-->
+                                    <a href="#" class="account-name">${sessionScope.acc.username}</a>
+                                    <ul class="header__navbar-user-menu">
+                                        <li class="header__navbar-user-item">
+                                            <a href="userprofile?id=${sessionScope.acc.getAccID()}"
+                                               class="header__navbar-user-item-link">Profile</a>
+                                        </li>
+                                        <li class="header__navbar-user-item header__navbar-user-item--separate">
+                                            <a href="logout" class="header__navbar-user-item-link">Logout</a>
+                                        </li>
+                                    </ul>
                                 </li>
-                            </ul>
-                        </li>
-                    </c:if>
-                </ul>
-            </nav>
-        </div>
-    </section>
+                            </c:if>
+                        </ul>
+                    </nav>
+                </div>
+            </section>
             <div class="main-body">
 
-               
+
 
 
                 <div class="row gutters-md">
@@ -142,15 +142,18 @@
                                         <h6 class="mb-0">Phone</h6>
                                     </div>
                                     <div class="col-sm-9 text-secondary">
-                                       ${requestScope.acc.phone }
+                                        <div class="col-sm-9 text-secondary">
+                                            ${requestScope.acc.phone != null ? requestScope.acc.phone : ""}
+                                        </div>
 
                                     </div>
+
                                 </div>
                                 <hr>
 
                                 <hr>
-                               
-                                     <div class="row">
+
+                                <div class="row">
                                     <div class="col-sm-3">
                                         <h6 class="mb-0">Address</h6>
                                     </div>
@@ -159,8 +162,8 @@
 
                                     </div>
                                 </div>
-                                
-                               
+
+
 
                                 <hr>
                                 <div class="row">
@@ -178,23 +181,23 @@
                                     <div class="col-sm-2">
                                         <a class="btn btn-outline-success" href="edit-profile">Edit Profile</a>
                                     </div>
-                                    
+
                                     <div class="col-sm-6">
                                         <a class="btn btn-outline-success" href="change-pass">Change Password</a>
                                     </div>
-                                    
+
                                 </div>
-                                
-                                    
-                               
+
+
+
                             </div>
                         </div>
                     </div>
-                    </div>
-                    </div>
-                    </div>
+                </div>
+            </div>
+        </div>
 
- <footer class="footer" style=" margin-top:200px;">
+        <footer class="footer" style=" margin-top:200px;">
 
             <div class="grid wide">
                 <div class="row">
@@ -246,7 +249,7 @@
         </footer>
 
 
-                        <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js" integrity="sha384-eMNCOe7tC1doHpGoJtKh7z7lGz7fuP4F8nfdFvAOA6Gg/z6Y5J6XqqyGXYM2ntX8" crossorigin="anonymous"></script>
-                        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.min.js" integrity="sha384-pzjw8f+ua7Kw1TIq0v8FqFjcJ6pajs/rfdfs3SO+kD4Ck5BdPtF+to8xMp9MvcJ4JjM9VZbzWd7mhXyKb46v5M1Qxz2OZbXsF3d1JWfHpYf2xT0xK" crossorigin="anonymous"></script>
-                        </body>
-                        </html>
+        <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js" integrity="sha384-eMNCOe7tC1doHpGoJtKh7z7lGz7fuP4F8nfdFvAOA6Gg/z6Y5J6XqqyGXYM2ntX8" crossorigin="anonymous"></script>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.min.js" integrity="sha384-pzjw8f+ua7Kw1TIq0v8FqFjcJ6pajs/rfdfs3SO+kD4Ck5BdPtF+to8xMp9MvcJ4JjM9VZbzWd7mhXyKb46v5M1Qxz2OZbXsF3d1JWfHpYf2xT0xK" crossorigin="anonymous"></script>
+    </body>
+</html>

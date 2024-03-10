@@ -26,7 +26,7 @@
         <link rel="stylesheet" href="./css/Home/HomeCss.css"/>
         <link rel="stylesheet" href="./css/Home/bass.css"/>
         <link rel="stylesheet" href="./css/Home/grid.css"/>
-        <link rel="stylesheet" href="./css/ProductList/side-bar.css">
+        <link rel="stylesheet" href="./css/ProductList/side-bar.css"/>
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 
         <link rel="preconnect" href="https://fonts.gstatic.com" />
@@ -104,6 +104,9 @@
                             <ul class="header__navbar-user-menu">
                                 <li class="header__navbar-user-item">
                                     <a href="userprofile?id=${sessionScope.acc.getAccID()}" class="header__navbar-user-item-link">Profile</a>
+                                </li>
+                                <li class="header__navbar-user-item">
+                                    <a href="myorder" class="header__navbar-user-item-link">My Order</a>
                                 </li>
                                 <li class="header__navbar-user-item header__navbar-user-item--separate">
                                     <a href="logout" class="header__navbar-user-item-link">Logout</a>
@@ -222,12 +225,11 @@
         <div class="grid wide">
             <div class="row">
                 <div class="col l-4">
-                    <div class="slide-bar-area" style="margin: 0px 0px 40px 0px;">
-                        <div class="slide-bar">
-                            <div class="search-box" >
-                                <form class="search-form" action="ProductListController" style="display: flex">
+                    <div class="side-bar-area">
+                        <div class="side-bar">
+                            <div class="search-box">
+                                <form class="search-form" action="ProductListController">
                                     <input class="text-input" type="text" placeholder="Search product..." value="${search}" name="search">
-                                    <input type="hidden" name="action" value="search">
                                     <button type="submit" class="search-btn"><i class="fa-solid fa-chevron-up fa-rotate-90"
                                                                                 style="color: #ffffff;"></i></button>
                                 </form>
@@ -235,13 +237,13 @@
                             <div class="category">
                                 <h3>Categories</h3>
                                 <c:forEach var="c" items="${cateList}">
-                                    <span><a href="ProductListController?cate=${c.getCateName()}&action=cate">${c.getCateName()}</a> (${c.getQuantity()})</span>
+                                    <span><a href="ProductListController?cate=${c.getCateName()}">${c.getCateName()}</a> (${c.getQuantity()})</span>
                                 </c:forEach>
                             </div>
-                            <div class="star-rating-slider">
+                            <div class="star-rating-sider">
                                 <h3>Rating</h3>
                                 <div class="rating-list">
-                                    <a href="ProductListController?rating=5&action=rate">
+                                    <a href="ProductListController?rating=5">
                                         <div class="five-stars">
                                             <i class="fa-solid fa-star"></i>
                                             <i class="fa-solid fa-star"></i>
@@ -250,7 +252,7 @@
                                             <i class="fa-solid fa-star"></i>
                                         </div>
                                     </a>
-                                    <a href="ProductListController?rating=4&action=rate">
+                                    <a href="ProductListController?rating=4">
                                         <div class="four-stars">
                                             <i class="fa-solid fa-star"></i>
                                             <i class="fa-solid fa-star"></i>
@@ -259,7 +261,7 @@
                                             <i class="fa-regular fa-star"></i><span>or more</span>
                                         </div>
                                     </a>
-                                    <a href="ProductListController?rating=3&action=rate">
+                                    <a href="ProductListController?rating=3">
                                         <div class="three-stars">
                                             <i class="fa-solid fa-star"></i>
                                             <i class="fa-solid fa-star"></i>
@@ -268,7 +270,7 @@
                                             <i class="fa-regular fa-star"></i><span>or more</span>
                                         </div>
                                     </a>
-                                    <a href="ProductListController?rating=2&action=rate">
+                                    <a href="ProductListController?rating=2">
                                         <div class="two-stars">
                                             <i class="fa-solid fa-star"></i>
                                             <i class="fa-solid fa-star"></i>
@@ -277,7 +279,7 @@
                                             <i class="fa-regular fa-star"></i><span>or more</span>
                                         </div>
                                     </a>
-                                    <a href="ProductListController?rating=1&action=rate">
+                                    <a href="ProductListController?rating=1">
                                         <div class="one-star">
                                             <i class="fa-solid fa-star"></i>
                                             <i class="fa-regular fa-star"></i>
@@ -289,7 +291,7 @@
                                 </div>
                             </div>
                             <form class="price-form" action="ProductListController">
-                                <div class="pricing-slider">
+                                <div class="pricing-sider">
                                     <h3>Pricing</h3>
                                     <div class="price-input">
                                         <span>From</span> <input type="number" value="${minPrice}" name="minPrice"> <span>To</span> <input type="number" value="${maxPrice}" name="maxPrice"> 
@@ -297,24 +299,33 @@
                                 </div>
                                 <div class="search-btn-box"><button type="submit" class="price-search">Search</button>
                                 </div>
-                                <input type="hidden" name="action" value="price">
                             </form>
-                            <div class="slide-bar-products">
+                            <div class="reset-box"><button onclick="window.location.href = 'ProductListController'" class="reset-side-bar">Reset</button> </div>  
+                            <div class="side-bar-products">
+                                <h3>Lasted Products</h3>
                                 <c:forEach var="p3" items="${newest3products}">
-                                    <div class="slide-product">
-                                        <div class="slide-product-img">
-                                            <a href="">
+                                    <div class="side-product">
+                                        <div class="side-product-img">
+                                            <a href="ProductDetailController?productId=${p3.getProductID()}">
                                                 <img src="./ProductListImg/${p3.getImage()}"
                                                      alt="">
                                             </a>
-                                            <div class="slide-onsale">
-                                                <span>Sale!</span>
-                                            </div>
                                         </div>
-                                        <h2>${p3.getProductName()}</h2>
-                                        <div class="slide-bar-product-price">
-                                            <span class="oldprice">$${p3.getMainPrice()}</span>
-                                            <span class="onprice">$${p3.getSalePrice()}</span>
+                                        <div class="side-product-content">
+                                            <a style="text-decoration: none; font-family: 'Open Sans', sans-serif; font-size: 1.2rem; color: black;" href="ProductDetailController?productId=${p3.getProductID()}"><h2 style="margin: 0">${p3.getProductName()}</h2></a>
+                                            <span style="margin-bottom: 5px" class="cate-title">${p3.getCateName()}</span>
+                                            <div style="margin-bottom: 5px" class="star-rating">
+                                                <c:forEach begin="1" end="${p3.getRating()}" step="1">
+                                                    <i style="color: #9fe252;" class="fa-solid fa-star"></i>
+                                                </c:forEach>
+                                                <c:forEach begin="${p3.getRating()}" end="4" step="1">
+                                                    <i class="fa-sharp fa-regular fa-star" style="color: #000000;"></i>
+                                                </c:forEach>
+                                            </div>
+                                            <div class="side-bar-product-price">
+                                                <span class="oldprice">$${p3.getMainPrice()}</span>
+                                                <span class="onprice">$${p3.getSalePrice()}</span>
+                                            </div>
                                         </div>
                                     </div>
                                 </c:forEach>                        

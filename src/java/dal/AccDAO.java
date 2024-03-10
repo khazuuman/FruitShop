@@ -203,6 +203,22 @@ public class AccDAO extends MyDAO {
 		}
 		return result;
 	}
+     public List getAccSale() {
+        long time = System.nanoTime();
+        List acc = new ArrayList();
+        String sql = "select * from mydb.account where RoleID = 4 or RoleID = 5 ";
+        try {
+            ps = con.prepareStatement(sql);
+            rs = ps.executeQuery();
+            while (rs.next()) {
+                acc.add(accParse(rs));
+            }
+        } catch (Exception e) {
+
+        }
+        System.out.println(System.nanoTime() - time);
+        return acc;
+    }
     
     public static void main(String[] args) {
         AccDAO acc = new AccDAO();

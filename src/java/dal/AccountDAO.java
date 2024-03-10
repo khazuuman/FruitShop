@@ -4,6 +4,7 @@
  */
 package dal;
 
+import static dal.MyDAO.con;
 import model.Account;
 
 import java.sql.PreparedStatement;
@@ -11,6 +12,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.crypto.spec.PSource;
@@ -127,14 +129,50 @@ public class AccountDAO extends MyDAO {
             Logger.getLogger(AccountDAO.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
+    public List<Integer> getAccSaleId() {
+    List<Integer> acc = new ArrayList<>();
+    String sql = "SELECT AccID FROM mydb.account WHERE RoleID = 4 OR RoleID = 5";
+
+    try {
+        ps = con.prepareStatement(sql);
+        rs = ps.executeQuery();
+
+        while (rs.next()) {
+            int accId = rs.getInt("AccID");
+            acc.add(accId);
+        }
+    } catch (Exception ex) {
+        // Handle any SQL exceptions
+        ex.printStackTrace();
+    } 
+
+    return acc;
+}
+    public int saleAccID(){
+         AccountDAO dao = new AccountDAO();
+         List<Integer> list = dao.getAccSaleId();
+            System.out.println(list);
+            Random random = new Random();
+        int randomIndex = random.nextInt(list.size());
+            
+            return list.get(randomIndex);
+            
+    }
 
     public static void main(String[] args) {
         AccountDAO dao = new AccountDAO();
         Account acc = dao.getAccountById(6);
 
         try {
-            dao.UpdateAccount(acc, "jh", "ngu", true, "0912320855", "giao tan");
-            System.out.println("Account updated successfully");
+//            dao.UpdateAccount(acc, "jh", "ngu", true, "0912320855", "giao tan");
+//            System.out.println("Account updated successfully");
+//      List<Integer> list = dao.getAccSaleId();
+//            System.out.println(list);
+//            Random random = new Random();
+//        int randomIndex = random.nextInt(list.size());
+//            System.out.println(list.get(randomIndex));
+int hi =dao.saleAccID();
+            System.out.println(hi);
         } catch (Exception e) {
             System.out.println("Error updating account: " + e.getMessage());
         }

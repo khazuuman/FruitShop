@@ -1,64 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <web-app version="6.0" xmlns="https://jakarta.ee/xml/ns/jakartaee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="https://jakarta.ee/xml/ns/jakartaee https://jakarta.ee/xml/ns/jakartaee/web-app_6_0.xsd">
-    <filter>
-        <filter-name>AdminFilter</filter-name>
-        <filter-class>filter.AdminFilter</filter-class>
-    </filter>
-    <filter>
-        <filter-name>CustomerFilter</filter-name>
-        <filter-class>filter.CustomerFilter</filter-class>
-    </filter>
-    <filter>
-        <filter-name>JSPFilter</filter-name>
-        <filter-class>filter.JSPFilter</filter-class>
-    </filter>
-    <filter>
-        <filter-name>MKTFilter</filter-name>
-        <filter-class>filter.MKTFilter</filter-class>
-    </filter>
-    <filter>
-        <filter-name>PersonalFilter</filter-name>
-        <filter-class>filter.PersonalFilter</filter-class>
-    </filter>
-    <filter>
-        <filter-name>SaleFilter</filter-name>
-        <filter-class>filter.SaleFilter</filter-class>
-    </filter>
-    
-    <filter-mapping>
-        <filter-name>SaleFilter</filter-name>
-        <servlet-name></servlet-name>
-    </filter-mapping>
-    
-    <filter-mapping>
-        <filter-name>PersonalFilter</filter-name>
-        <servlet-name>UserProfileController</servlet-name>
-    </filter-mapping>
-    
-    <filter-mapping>
-        <filter-name>MKTFilter</filter-name>
-        <servlet-name>CartDetailController</servlet-name>
-    </filter-mapping>
-    
-    <filter-mapping>
-        <filter-name>JSPFilter</filter-name>
-        <url-pattern>*.jsp</url-pattern>
-    </filter-mapping>
-    
-    <filter-mapping>
-        <filter-name>CustomerFilter</filter-name>
-        <servlet-name>UpdateSlider</servlet-name>
-    </filter-mapping>
-    
-    <filter-mapping>
-        <filter-name>AdminFilter</filter-name>
-        <url-pattern>/userdetail</url-pattern>
-        <filter-name>AdminFilter</filter-name>
-        <servlet-name>UserListController</servlet-name>
-        <servlet-name>SettingDetailController</servlet-name>
-        <servlet-name>SettingListController</servlet-name>
-    </filter-mapping>
-    
     <servlet>
         <servlet-name>EditSlider</servlet-name>
         <servlet-class>controller.EditSlider</servlet-class>
@@ -115,22 +56,6 @@
         <servlet-name>ProductListMKTController</servlet-name>
         <servlet-class>controller.ProductListMKTController</servlet-class>
     </servlet>
-    <servlet-mapping>
-        <servlet-name>SliderList</servlet-name>
-        <url-pattern>/sliderlist</url-pattern>
-    </servlet-mapping>
-    <servlet-mapping>
-        <servlet-name>SliderAction</servlet-name>
-        <url-pattern>/slideraction</url-pattern>
-    </servlet-mapping>
-    <servlet-mapping>
-        <servlet-name>EditSlider</servlet-name>
-        <url-pattern>/editslider</url-pattern>
-    </servlet-mapping>
-    <servlet-mapping>
-        <servlet-name>UpdateSlider</servlet-name>
-        <url-pattern>/updateslider</url-pattern>
-    </servlet-mapping>
     <servlet>
         <servlet-name>SliderList</servlet-name>
         <servlet-class>controller.SliderList</servlet-class>
@@ -155,6 +80,134 @@
         <servlet-name>ResetPasswordController</servlet-name>
         <servlet-class>controller.ResetPasswordController</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>ChangePasswordController</servlet-name>
+        <servlet-class>controller.ChangePasswordController</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>UserProfileController</servlet-name>
+        <servlet-class>controller.UserProfileController</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>EditUserProductController</servlet-name>
+        <servlet-class>controller.EditUserProductController</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>DeleteAddressController</servlet-name>
+        <servlet-class>controller.DeleteAddressController</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>BlogDetailController</servlet-name>
+        <servlet-class>controller.BlogDetailController</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>UserListController</servlet-name>
+        <servlet-class>controller.UserListController</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>LogoutController</servlet-name>
+        <servlet-class>controller.LogoutController</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>ForgotPasswordController</servlet-name>
+        <servlet-class>controller.ForgotPasswordController</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>LoginController</servlet-name>
+        <servlet-class>controller.LoginController</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>RegisterController</servlet-name>
+        <servlet-class>controller.RegisterController</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>RegisterVerifiedController</servlet-name>
+        <servlet-class>controller.RegisterVerifiedController</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>ProductListController</servlet-name>
+        <servlet-class>controller.ProductListController</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>HomeController</servlet-name>
+        <servlet-class>controller.HomeController</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>BlogController</servlet-name>
+        <servlet-class>controller.BlogController</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>CustomerDetailController</servlet-name>
+        <servlet-class>controller.CustomerDetailController</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>CustomerListController</servlet-name>
+        <servlet-class>controller.CustomerListController</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>AddBlog</servlet-name>
+        <servlet-class>controller.AddBlog</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>ChangeBlogStatus</servlet-name>
+        <servlet-class>controller.ChangeBlogStatus</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>ManagerBlog</servlet-name>
+        <servlet-class>controller.ManagerBlog</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>ManagerBlogDetail</servlet-name>
+        <servlet-class>controller.ManagerBlogDetail</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>OrderDetailSaleController</servlet-name>
+        <servlet-class>controller.OrderDetailSaleController</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>OrderList</servlet-name>
+        <servlet-class>controller.OrderList</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>AdminDashboardController</servlet-name>
+        <servlet-class>controller.AdminDashboardController</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>FeedbackController</servlet-name>
+        <servlet-class>controller.FeedbackController</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>FeedbackDetailController</servlet-name>
+        <servlet-class>controller.FeedbackDetailController</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>FeedbackFormController</servlet-name>
+        <servlet-class>controller.FeedbackFormController</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>MyOrderController</servlet-name>
+        <servlet-class>controller.MyOrderController</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>MailFeedback</servlet-name>
+        <servlet-class>controller.MailFeedback</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>SliderList</servlet-name>
+        <url-pattern>/sliderlist</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>SliderAction</servlet-name>
+        <url-pattern>/slideraction</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>EditSlider</servlet-name>
+        <url-pattern>/editslider</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>UpdateSlider</servlet-name>
+        <url-pattern>/updateslider</url-pattern>
+    </servlet-mapping>
     <servlet-mapping>
         <servlet-name>ForgotPasswordController</servlet-name>
         <url-pattern>/ForgotPasswordController</url-pattern>
@@ -215,41 +268,6 @@
         <servlet-name>SettingDetailController</servlet-name>
         <url-pattern>/adsettingdetail</url-pattern>
     </servlet-mapping>
-    <welcome-file-list>
-        <welcome-file>home</welcome-file>
-    </welcome-file-list>
-    <servlet>
-        <servlet-name>ChangePasswordController</servlet-name>
-        <servlet-class>controller.ChangePasswordController</servlet-class>
-    </servlet>
-    <servlet>
-        <servlet-name>UserProfileController</servlet-name>
-        <servlet-class>controller.UserProfileController</servlet-class>
-    </servlet>
-    <servlet>
-        <servlet-name>EditUserProductController</servlet-name>
-        <servlet-class>controller.EditUserProductController</servlet-class>
-    </servlet>
-    <servlet>
-        <servlet-name>DeleteAddressController</servlet-name>
-        <servlet-class>controller.DeleteAddressController</servlet-class>
-    </servlet>
-    <servlet>
-        <servlet-name>BlogDetailController</servlet-name>
-        <servlet-class>controller.BlogDetailController</servlet-class>
-    </servlet>
-    <servlet>
-        <servlet-name>UserListController</servlet-name>
-        <servlet-class>controller.UserListController</servlet-class>
-    </servlet>
-    <servlet>
-        <servlet-name>LogoutController</servlet-name>
-        <servlet-class>controller.LogoutController</servlet-class>
-    </servlet>
-    <servlet>
-        <servlet-name>ForgotPasswordController</servlet-name>
-        <servlet-class>controller.ForgotPasswordController</servlet-class>
-    </servlet>
     <servlet-mapping>
         <servlet-name>ChangePasswordController</servlet-name>
         <url-pattern>/change-pass</url-pattern>
@@ -266,18 +284,6 @@
         <servlet-name>DeleteAddressController</servlet-name>
         <url-pattern>/delete-address</url-pattern>
     </servlet-mapping>
-    <servlet>
-        <servlet-name>LoginController</servlet-name>
-        <servlet-class>controller.LoginController</servlet-class>
-    </servlet>
-    <servlet>
-        <servlet-name>RegisterController</servlet-name>
-        <servlet-class>controller.RegisterController</servlet-class>
-    </servlet>
-    <servlet>
-        <servlet-name>RegisterVerifiedController</servlet-name>
-        <servlet-class>controller.RegisterVerifiedController</servlet-class>
-    </servlet>
     <servlet-mapping>
         <servlet-name>LoginController</servlet-name>
         <url-pattern>/LoginController</url-pattern>
@@ -290,10 +296,6 @@
         <servlet-name>RegisterVerifiedController</servlet-name>
         <url-pattern>/RegisterVerifiedController</url-pattern>
     </servlet-mapping>
-    <servlet>
-        <servlet-name>ProductListController</servlet-name>
-        <servlet-class>controller.ProductListController</servlet-class>
-    </servlet>
     <servlet-mapping>
         <servlet-name>ProductListController</servlet-name>
         <url-pattern>/ProductListController</url-pattern>
@@ -306,14 +308,6 @@
         <servlet-name>UserListController</servlet-name>
         <url-pattern>/userlist</url-pattern>
     </servlet-mapping>
-    <servlet>
-        <servlet-name>HomeController</servlet-name>
-        <servlet-class>controller.HomeController</servlet-class>
-    </servlet>
-    <servlet>
-        <servlet-name>BlogController</servlet-name>
-        <servlet-class>controller.BlogController</servlet-class>
-    </servlet>
     <servlet-mapping>
         <servlet-name>HomeController</servlet-name>
         <url-pattern>/home</url-pattern>
@@ -334,14 +328,6 @@
         <servlet-name>CartContactController</servlet-name>
         <url-pattern>/cart-contact</url-pattern>
     </servlet-mapping>
-    <servlet>
-        <servlet-name>CustomerDetailController</servlet-name>
-        <servlet-class>controller.CustomerDetailController</servlet-class>
-    </servlet>
-    <servlet>
-        <servlet-name>CustomerListController</servlet-name>
-        <servlet-class>controller.CustomerListController</servlet-class>
-    </servlet>
     <servlet-mapping>
         <servlet-name>CustomerListController</servlet-name>
         <url-pattern>/customerlist</url-pattern>
@@ -350,4 +336,55 @@
         <servlet-name>CustomerDetailController</servlet-name>
         <url-pattern>/customerdetail</url-pattern>
     </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>AddBlog</servlet-name>
+        <url-pattern>/AddBlog</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ChangeBlogStatus</servlet-name>
+        <url-pattern>/ChangeBlogStatus</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ManagerBlog</servlet-name>
+        <url-pattern>/ManagerBlog</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ManagerBlogDetail</servlet-name>
+        <url-pattern>/ManagerBlogDetail</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>OrderDetailSaleController</servlet-name>
+        <url-pattern>/OrderDetailSaleController</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>OrderList</servlet-name>
+        <url-pattern>/OrderList</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>AdminDashboardController</servlet-name>
+        <url-pattern>/admindashboard</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>FeedbackController</servlet-name>
+        <url-pattern>/feedback</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>FeedbackDetailController</servlet-name>
+        <url-pattern>/feedbackdetail</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>FeedbackFormController</servlet-name>
+        <url-pattern>/feedbackform</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>MyOrderController</servlet-name>
+        <url-pattern>/myorder</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>MailFeedback</servlet-name>
+        <url-pattern>/mailfeeback</url-pattern>
+    </servlet-mapping>
+    <welcome-file-list>
+        <welcome-file>home</welcome-file>
+    </welcome-file-list>
 </web-app>
